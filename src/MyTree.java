@@ -1,3 +1,7 @@
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Queue;
+
 class Node<T>{
     T item;
     Node<T> left;
@@ -87,6 +91,7 @@ public class MyTree<T extends Comparable<T>> {
         System.out.print("[");
         printInOrderRec(root);
         System.out.print("]");
+        System.out.println();
     }
 
     private void printInOrderRec(Node<T> current) {
@@ -95,5 +100,27 @@ public class MyTree<T extends Comparable<T>> {
         printInOrderRec(current.left);
         System.out.print(current.item + " ");
         printInOrderRec(current.right);
+    }
+
+    public void printDFS(){
+        Queue<Node<T>> queue = new ArrayDeque<>();
+        ArrayList<T> list = new ArrayList<>();
+        if (root != null) {
+            queue.add(root);
+            printDFSRec(queue, list);
+        }
+        System.out.println(list);
+    }
+
+    private void printDFSRec(Queue<Node<T>> queue, ArrayList<T> list) {
+        if (queue.isEmpty())
+            return;
+        Node<T> current = queue.poll();
+        list.add(current.item);
+        if (current.hasLeft())
+            queue.add(current.left);
+        if (current.hasRight())
+            queue.add(current.right);
+        printDFSRec(queue, list);
     }
 }

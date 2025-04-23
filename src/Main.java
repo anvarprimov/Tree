@@ -13,5 +13,6 @@ public class Main {
         tree.printInOrder();
         tree.remove(30);
         tree.printInOrder();
+        tree.printDFS();
     }
 }
