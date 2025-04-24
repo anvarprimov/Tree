@@ -102,17 +102,17 @@ public class MyTree<T extends Comparable<T>> {
         printInOrderRec(current.right);
     }
 
-    public void printDFS(){
+    public void printBFS(){
         Queue<Node<T>> queue = new ArrayDeque<>();
         ArrayList<T> list = new ArrayList<>();
         if (root != null) {
             queue.add(root);
-            printDFSRec(queue, list);
+            printBFSRec(queue, list);
         }
         System.out.println(list);
     }
 
-    private void printDFSRec(Queue<Node<T>> queue, ArrayList<T> list) {
+    private void printBFSRec(Queue<Node<T>> queue, ArrayList<T> list) {
         if (queue.isEmpty())
             return;
         Node<T> current = queue.poll();
@@ -121,6 +121,6 @@ public class MyTree<T extends Comparable<T>> {
             queue.add(current.left);
         if (current.hasRight())
             queue.add(current.right);
-        printDFSRec(queue, list);
+        printBFSRec(queue, list);
     }
 }
